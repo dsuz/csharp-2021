@@ -57,22 +57,29 @@ class Program
 
         Wait("Hit Enter...");   // 引数（「ひきすう」と読む。英語では parameter という）を渡して、渡された値によって異なる処理をさせることができる
 
-        float r = 10f;
-        Console.WriteLine("半径 " + r + " の円の円周は " + Enshu(r) + "です");    // 関数は計算して結果を受け取ることができる。この結果を「戻り値」という。
-        r = 100f;
-        Console.WriteLine("半径 {0} の円の円周は {1} です", r, Enshu(r));
-
+        // 関数の引数が複数であることもある
+        Daikei(2, 4, 3);
         Wait("Hit Enter...");
 
-        // 関数の引数が複数であることもある
-        Console.WriteLine("上底 {0}、下底 {1}、高さ {2} の台形の面積は {3} です", 2, 3, 5, Daikei(2, 3, 5));
+        /*
+         * ここで以下をやってみましょう
+         * https://paiza.jp/works/cs/primer/beginner-cs6/10302/1 の演習 1
+         * */
+
+        // 「戻り値」として「計算結果を返す」こともできる。
+        float r = 10f;
+        float enshu = Enshu(r);
+        Console.WriteLine("半径 " + r + " の円の円周は " + enshu + "です");    // 関数は計算して結果を受け取ることができる。この結果を「戻り値」という。
+
+        r = 100f;
+        Console.WriteLine("半径 {0} の円の円周は {1} です", r, Enshu(r)); // 戻り値をそのまま「値」として扱うこともできる。
 
         Wait();
 
         /*
          * ここで以下をやってみましょう
-         * https://paiza.jp/works/cs/primer/beginner-cs6/10302/1 の演習 1
-         */
+         * https://paiza.jp/works/cs/primer/beginner-cs6/10304/1 の演習 1
+         * */
     }
 
     /// <summary>
@@ -97,6 +104,19 @@ class Program
     }
 
     /// <summary>
+    /// 台形の面積を求める
+    /// （注）引数を複数受け取ることもできる
+    /// </summary>
+    /// <param name="joutei"></param>
+    /// <param name="katei"></param>
+    /// <param name="takasa"></param>
+    static void Daikei(float joutei, float katei, float takasa)
+    {
+        float menseki = (joutei + katei) * takasa / 2;
+        Console.WriteLine("上底 {0}、下底 {1}、高さ {2} の台形の面積は {3} です", joutei, katei, takasa, menseki);
+    }
+
+    /// <summary>
     /// 引数に指定された半径から円周を求める
     /// </summary>
     /// <param name="radius">半径</param>
@@ -105,19 +125,5 @@ class Program
     {
         float enshu = 2 * 3.14f * radius;
         return enshu;   // return enshu と書くと、計算した結果である enshu を戻り値として返す事ができる
-    }
-
-    /// <summary>
-    /// 台形の面積を求める
-    /// （注）引数を複数受け取ることもできる
-    /// </summary>
-    /// <param name="joutei"></param>
-    /// <param name="katei"></param>
-    /// <param name="takasa"></param>
-    /// <returns></returns>
-    static float Daikei(float joutei, float katei, float takasa)
-    {
-        float menseki = (joutei + katei) * takasa / 2;
-        return menseki;
     }
 }
