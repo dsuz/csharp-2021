@@ -55,9 +55,4 @@ public class CollisionDetection : MonoBehaviour
         // 色を初期色に戻す
         m_sprite.color = m_initialColor;
     }
-
-    void Update()
-    {
-        
-    }
 }
