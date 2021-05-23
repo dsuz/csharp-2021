@@ -18,6 +18,7 @@ public class StarGenerator : MonoBehaviour
         // 左クリックが押されたら
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log("Fire1 が押された");
             // プレハブから GameObject を生成し、設定されたオフセットにずらす
             GameObject go = Instantiate(m_prefab, this.transform.position, this.transform.rotation);
             go.transform.position += m_offset;

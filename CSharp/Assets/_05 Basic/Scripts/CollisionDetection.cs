@@ -27,6 +27,7 @@ public class CollisionDetection : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(this.name + " と " + collision.gameObject.name + " が衝突した");
         // 色を変える
         m_sprite.color = m_changedColor;
     }
@@ -38,6 +39,7 @@ public class CollisionDetection : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(this.name + " と " + collision.gameObject.name + " が接触した");
         // 色を変える
         m_sprite.color = m_changedColor;
     }
@@ -49,7 +51,13 @@ public class CollisionDetection : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log(this.name + " と " + collision.gameObject.name + " が離れた");
         // 色を初期色に戻す
         m_sprite.color = m_initialColor;
+    }
+
+    void Update()
+    {
+        
     }
 }
