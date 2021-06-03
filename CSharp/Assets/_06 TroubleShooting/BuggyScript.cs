@@ -34,6 +34,7 @@ public class BuggyScript : MonoBehaviour
             // その名前の GameObject が見つからない時は null を返す。
             GameObject go = GameObject.Find(m_targetObjectName);
             go.SetActive(false);
+            m_targetObjectName = "";
         }
     }
 }
