@@ -19,7 +19,7 @@ public class BuggyScript : MonoBehaviour
 
     void Update()
     {
-        // 左クリックでスクリプトを切り替える
+        // 左クリックでスプライトを切り替える
         if (Input.GetButtonDown("Fire1"))
         {
             m_sprite.sprite = m_sprites[m_index];
