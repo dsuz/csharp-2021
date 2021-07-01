@@ -25,9 +25,6 @@ public class HumanControllerTopDown2D : MonoBehaviour
     Animator m_anim = default;
     SpriteRenderer m_sprite = default;
     float m_life = 0;
-    bool m_isPoisoned = false;
-    bool m_isParalyzed = false;
-    bool m_isDead = false;
     PlayerState m_state = PlayerState.Normal;
 
     void Start()
@@ -46,29 +43,31 @@ public class HumanControllerTopDown2D : MonoBehaviour
         Vector2 dir = new Vector2(h, v).normalized;
 
         // 状態判定
-        if (m_isParalyzed)
+        switch (m_state)
         {
-            m_rb.velocity = dir * m_speed * m_speedReductionRatioOnParalyzed;
-        }
-        else if (m_isDead)
-        {
-            // 何もできなくなる
-            m_rb.velocity = Vector2.zero;
-        }
-        else
-        {
-            m_rb.velocity = dir * m_speed;
+            case PlayerState.Paralyzed:
+                m_rb.velocity = dir * m_speed * m_speedReductionRatioOnParalyzed;
+                break;
 
-            if (m_isPoisoned)
-            {
-                m_life -= m_lifeReduceSpeedOnPoisoned * Time.deltaTime;
-            }
+            case PlayerState.Dead:
+                m_rb.velocity = Vector2.zero;
+                break;
+
+            case PlayerState.Poisoned:
+            case PlayerState.Normal:
+                m_rb.velocity = dir * m_speed;
+
+                if (m_state == PlayerState.Poisoned)
+                {
+                    m_life -= m_lifeReduceSpeedOnPoisoned * Time.deltaTime;
+                }
+                break;
         }
 
         // 生死判定
-        if (m_life < 0 && m_isDead == false)
+        if (m_life < 0 && m_state != PlayerState.Dead)
         {
-            m_isDead = true;
+            m_state = PlayerState.Dead;
             m_sprite.color = Color.red;
         }
 
@@ -98,20 +97,17 @@ public class HumanControllerTopDown2D : MonoBehaviour
     {
         if (collision.gameObject.tag == "Poison")
         {
-            m_isPoisoned = true;
-            m_isParalyzed = false;
+            m_state = PlayerState.Poisoned;
             m_sprite.color = Color.magenta;
         }
         else if (collision.gameObject.tag == "Paralyze")
         {
-            m_isPoisoned = false;
-            m_isParalyzed = true;
+            m_state = PlayerState.Paralyzed;
             m_sprite.color = Color.yellow;
         }
         else
         {
-            m_isPoisoned = false;
-            m_isParalyzed = false;
+            m_state = PlayerState.Normal;
             m_sprite.color = Color.white;
         }
     }
