@@ -7,8 +7,6 @@ public class LevelController : MonoBehaviour
 {
     /// <summary>レベルアップテーブルを読み込むため</summary>
     [SerializeField] LevelManager m_levelManager = default;
-    /// <summary>プレイヤーのレベル</summary>
-    int m_level = 1;
     /// <summary>プレイヤーのパラメーター</summary>
     PlayerStats m_playerStats = default;
 
@@ -16,7 +14,17 @@ public class LevelController : MonoBehaviour
     {
         get
         {
-            return m_level;
+            return m_playerStats.Level;
+        }
+
+        private set
+        {
+            PlayerStats stats = m_levelManager.GetData(value);
+
+            if (stats.Level != 0)
+            {
+                m_playerStats = m_levelManager.GetData(value);
+            }
         }
     }
 
@@ -30,20 +38,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        ReloadData();
-    }
-
-    /// <summary>
-    /// レベルに対してプレイヤーのパラメーターを読み込み直す
-    /// </summary>
-    public void ReloadData()
-    {
-        PlayerStats stats = m_levelManager.GetData(m_level);
-
-        if (stats.Level != 0)
-        {
-            m_playerStats = m_levelManager.GetData(m_level);
-        }
+        LevelUp();
     }
 
     /// <summary>
@@ -52,12 +47,6 @@ public class LevelController : MonoBehaviour
     /// <param name="level">レベルアップさせたいレベル数</param>
     public void LevelUp(int level = 1)
     {
-        PlayerStats stats = m_levelManager.GetData(m_level + level);
-
-        if (stats.Level != 0)
-        {
-            m_level += level;
-            m_playerStats = m_levelManager.GetData(m_level);
-        }
+        this.Level += level;
     }
 }
