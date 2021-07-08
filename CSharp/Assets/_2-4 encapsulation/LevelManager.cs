@@ -73,12 +73,12 @@ public class LevelManager : MonoBehaviour
 /// </summary>
 public struct PlayerStats
 {
-    public int Level;
-    public int Maxhp;
-    public int Maxmp;
-    public int Attack;
-    public int Magic;
-    public int Dex;
+    public int Level { get; }
+    public int Maxhp { get; }
+    public int Maxmp { get; }
+    public int Attack { get; }
+    public int Magic { get; }
+    public int Dex { get; }
 
     public PlayerStats(int level, int maxhp, int maxmp, int attack, int magic, int dex)
     {

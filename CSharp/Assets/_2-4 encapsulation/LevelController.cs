@@ -8,9 +8,25 @@ public class LevelController : MonoBehaviour
     /// <summary>レベルアップテーブルを読み込むため</summary>
     [SerializeField] LevelManager m_levelManager = default;
     /// <summary>プレイヤーのレベル</summary>
-    public int m_level = 1;
+    int m_level = 1;
     /// <summary>プレイヤーのパラメーター</summary>
-    public PlayerStats m_playerStats = default;
+    PlayerStats m_playerStats = default;
+
+    public int Level
+    {
+        get
+        {
+            return m_level;
+        }
+    }
+
+    public PlayerStats Stats
+    {
+        get
+        {
+            return m_playerStats;
+        }
+    }
 
     void Start()
     {
