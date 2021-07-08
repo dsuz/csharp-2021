@@ -13,10 +13,10 @@ public class StatusWindowManager : MonoBehaviour
     void Update()
     {
         // レベルが変わったら再描画する
-        if (m_player.m_level != m_lastUpdateLevel)
+        if (m_player.Level != m_lastUpdateLevel)
         {
             Refresh();
-            m_lastUpdateLevel = m_player.m_level;
+            m_lastUpdateLevel = m_player.Level;
         }
     }
 
@@ -27,7 +27,7 @@ public class StatusWindowManager : MonoBehaviour
     {
         // C# の標準ライブラリで文字列を組み立てる
         System.Text.StringBuilder builder = new System.Text.StringBuilder();
-        PlayerStats s = m_player.m_playerStats;
+        PlayerStats s = m_player.Stats;
         builder.AppendLine(s.Level.ToString());
         builder.AppendLine(s.Maxhp.ToString());
         builder.AppendLine(s.Maxmp.ToString());
