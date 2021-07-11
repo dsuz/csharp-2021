@@ -103,7 +103,7 @@ class Program
     {
         /*
         var list = new List<???> { 10, 15, 30, 60 };
-        list ??? = 75;
+        list[???] = 75;
         list.??? (15);
         list.??? (2, 108);
 
@@ -139,7 +139,7 @@ class Program
 
             if (buf.Length == 0)
             {
-                return;
+                break;
             }
         }
     }
