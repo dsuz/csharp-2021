@@ -7,9 +7,9 @@ class Program
     static void Main(string[] args)
     {
         //ArrayExample();
-        ListExample();
-        //ListExercise01();
-        //ListExercise02();
+        //ListExample();
+        ListExercise01();
+        ListExercise02();
         //DictionaryExample();
 
         Console.Write("\r\nHit any key...\r\n");
@@ -101,17 +101,15 @@ class Program
     /// </summary>
     static void ListExercise01()
     {
-        /*
-        var list = new List<???> { 10, 15, 30, 60 };
-        list[???] = 75;
-        list.??? (15);
-        list.??? (2, 108);
+        var list = new List<int> { 10, 15, 30, 60 };
+        list[3] = 75;
+        list.Remove (15);
+        list.Insert (2, 108);
 
-        foreach(var ??? in list)
+        foreach(var item in list)
         {
             Console.WriteLine(item);
         }
-        */
     }
 
 
@@ -132,6 +130,8 @@ class Program
     /// </summary>
     static void ListExercise02()
     {
+        List<string> words = new List<string>();
+
         while (true)
         {
             Console.Write("文字列を入力:");
@@ -141,6 +141,15 @@ class Program
             {
                 break;
             }
+
+            words.Add(buf);
+        }
+
+        words.Sort();
+
+        foreach (var w in words)
+        {
+            Console.Write(w + " ");
         }
     }
 
