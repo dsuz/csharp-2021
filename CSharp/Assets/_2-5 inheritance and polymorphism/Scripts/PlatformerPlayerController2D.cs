@@ -7,11 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlatformerPlayerController2D : MonoBehaviour
 {
-    /// <summary></summary>
+    /// <summary>移動速度</summary>
     [SerializeField] float m_moveSpeed = 3f;
-    /// <summary></summary>
+    /// <summary>ジャンプ速度</summary>
     [SerializeField] float m_jumpSpeed = 5f;
-    /// <summary></summary>
+    /// <summary>ジャンプ中にジャンプボタンを離した時の上昇速度減衰率</summary>
     [SerializeField] float m_gravityDrag = .8f;
     Rigidbody2D m_rb = default;
     /// <summary>接地フラグ</summary>
