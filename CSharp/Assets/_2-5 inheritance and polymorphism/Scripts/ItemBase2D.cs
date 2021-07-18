@@ -42,7 +42,7 @@ public class ItemBase2D : MonoBehaviour
                 // 見えない所に移動する
                 this.transform.position = Camera.main.transform.position;
                 // コライダーを無効にする
-                this.gameObject.SetActive(false);
+                GetComponent<Collider2D>().enabled = false;
                 // プレイヤーにアイテムを渡す
                 collision.gameObject.GetComponent<PlatformerPlayerController2D>().GetItem(this);
             }
