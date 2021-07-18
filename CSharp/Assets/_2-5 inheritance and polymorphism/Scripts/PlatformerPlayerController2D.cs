@@ -39,8 +39,8 @@ public class PlatformerPlayerController2D : MonoBehaviour
             {
                 // リストの先頭にあるアイテムを使って、破棄する
                 ItemBase2D item = m_itemList[0];
-                item.Activate();
                 m_itemList.RemoveAt(0);
+                item.Activate();
                 Destroy(item.gameObject);
             }
         }
