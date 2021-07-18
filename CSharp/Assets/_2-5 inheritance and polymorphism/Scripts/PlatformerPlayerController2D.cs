@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -20,12 +21,15 @@ public class PlatformerPlayerController2D : MonoBehaviour
     Animator m_anim = default;
     /// <summary>持っているアイテムのリスト</summary>
     List<ItemBase2D> m_itemList = new List<ItemBase2D>();
+    /// <summary>現在のジャンプ速度</summary>
+    float m_currentJumpSpeed = 0;
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
         m_initialPosition = this.transform.position;
+        m_currentJumpSpeed = m_jumpSpeed;
     }
     
     void Update()
@@ -53,6 +57,30 @@ public class PlatformerPlayerController2D : MonoBehaviour
     }
 
     /// <summary>
+    /// 一時的にジャンプ力を上げる
+    /// </summary>
+    /// <param name="boostRate">ジャンプ力を何倍にするか</param>
+    /// <param name="boostTime">効果の有効期間（秒）</param>
+    public void BoostJump(float boostRate, float boostTime)
+    {
+        Debug.Log("Boost jump speed");
+        m_currentJumpSpeed *= boostRate;
+        StartCoroutine(BackToOriginalJumpSpeedRoutine(boostTime));
+    }
+
+    /// <summary>
+    /// ジャンプ力を元に戻す
+    /// </summary>
+    /// <param name="delayTime">遅延時間（秒）</param>
+    /// <returns></returns>
+    IEnumerator BackToOriginalJumpSpeedRoutine(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Debug.Log("Boost jump speed ended");
+        m_currentJumpSpeed = m_jumpSpeed;
+    }
+
+    /// <summary>
     /// アイテムをアイテムリストに追加する
     /// </summary>
     /// <param name="item"></param>
@@ -77,7 +105,7 @@ public class PlatformerPlayerController2D : MonoBehaviour
         if (Input.GetButtonDown("Jump") && m_isGrounded)
         {
             m_isGrounded = false;
-            velocity.y = m_jumpSpeed;
+            velocity.y = m_currentJumpSpeed;
         }
         else if (!Input.GetButton("Jump") && velocity.y > 0)
         {
