@@ -43,10 +43,13 @@ class PrimeNumber
 		{
 			return true;
 		}
+		else if (n % 2 == 0) // 課題 1
+		{
+			return false;
+		}
 		else
 		{
-			// 3 以上に対しては、2 ~ n-1 で割ってみる
-			for (int i = 2; i < n; i++)
+			for (int i = 3; i * i <= n; i += 2) // 課題 2
 			{
 				// 割り切れたら素数ではない
 				if (n % i == 0)
