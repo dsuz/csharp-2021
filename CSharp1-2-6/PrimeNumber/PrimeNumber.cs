@@ -50,7 +50,7 @@ class PrimeNumber
 		else
 		{
 			// 3 以上の奇数に対しては、3 以上の奇数で割ってみる
-			for (int i = 3; i < n; i += 2)
+			for (int i = 3; i * i <= n; i += 2)
 			{
 				// 割り切れたら素数ではない
 				if (n % i == 0)
