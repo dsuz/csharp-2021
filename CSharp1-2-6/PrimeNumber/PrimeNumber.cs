@@ -43,10 +43,14 @@ class PrimeNumber
 		{
 			return true;
 		}
+		else if (n % 2 == 0) // 2 以外の偶数は素数ではない
+		{
+			return false;
+		}
 		else
 		{
-			// 3 以上に対しては、2 ~ n-1 で割ってみる
-			for (int i = 2; i < n; i++)
+			// 3 以上の奇数に対しては、3 以上の奇数で割ってみる
+			for (int i = 3; i < n; i += 2)
 			{
 				// 割り切れたら素数ではない
 				if (n % i == 0)
