@@ -39,6 +39,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         if (currentDeck)
         {
             message += $"マウスポインタは {currentDeck.name} の上にあります";
+            m_originDeck = currentDeck.transform;
         }
         else
         {
@@ -92,6 +93,10 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         if (currentDeck)
         {
             this.transform.SetParent(currentDeck.transform);
+        }
+        else
+        {
+            this.transform.SetParent(m_originDeck);
         }
     }
 }
