@@ -52,6 +52,7 @@ public class CardController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
     {
         Debug.Log($"OnBeginDrag: {this.name}");
         this.transform.SetParent(m_table.transform);
+        this.transform.SetAsLastSibling();
     }
 
     /// <summary>
