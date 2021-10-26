@@ -35,14 +35,14 @@ class Program
         // https://kan-kikuchi.hatenablog.com/entry/List_Lambda
 
         // List と Array では当然似たような処理が用意されていますが、RemoveAll と Sort は List のみ実行できます。
-
-        // 条件に従って並べ替える
+        
+        // 条件に従って並べ替える (Sort)
         var fruitList = strFruitArray.ToList();
         fruitList.Sort((a, b) => a.Length - b.Length);  // 文字数が少ない順に並べ替えている。最近では Linq の OrderBy メソッドを使う事が多いかもしれない。
         fruitList.ForEach(s => Console.Write($"{s}, "));
         Console.WriteLine("\n-----");
 
-        // 条件に合致した要素を削除する
+        // 条件に合致した要素を削除する (RemoveAll)
         fruitList.RemoveAll(s => s.Contains("a"));  // "a" を含む要素を削除している。
         fruitList.ForEach(s => Console.Write($"{s}, "));
         Console.WriteLine("\n-----");
