@@ -11,8 +11,6 @@ public class PauseManager3D : MonoBehaviour
     public delegate void Pause(bool isPause);
     /// <summary>デリゲートを入れておく変数</summary>
     Pause _onPauseResume = default;
-    [SerializeField] UnityEngine.Events.UnityAction uaction;
-    [SerializeField] UnityEngine.Events.UnityEvent uevent;
 
     /// <summary>
     /// 一時停止・再開を入れるデリゲートプロパティ
