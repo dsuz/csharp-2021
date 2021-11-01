@@ -56,19 +56,19 @@ public class Platformer2DPlayerController : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         Vector2 velocity = _rb.velocity;
 
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
             velocity.y = _jumpSpeed;
         }
 
-        if (!Input.GetButton("Jump") && _rb.velocity.y > 0)
-        {
-            velocity.y *= _jumpDumping;
-        }
+        // ある条件下ではジャンプの上昇速度を減衰させる
+        //if ()
+        //{
+        //    velocity.y *= _jumpDumping;
+        //}
 
         velocity.x = h * _runSpeed;
         _rb.velocity = velocity;
-        _sprite.flipX = h < -0;
     }
 
     void LateUpdate()
@@ -96,21 +96,14 @@ public class Platformer2DPlayerController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                Platformer2DEnemyController enemy = collision.gameObject.GetComponent<Platformer2DEnemyController>();
-                enemy?.Hit(_rb);
                 break;
             case "Ground":
-                _isGrounded = true;
                 break;
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _isGrounded = false;
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

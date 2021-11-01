@@ -27,13 +27,6 @@ public class Platformer2DEnemyController : MonoBehaviour
     /// <param name="player">プレイヤーの Rigidbody を渡す。踏んで倒した時に指定する。遠距離攻撃で倒した時は null を指定する。</param>
     public void Hit(Rigidbody2D player)
     {
-        // プレイヤーを押し返す
-        if (player)
-        {
-            Vector2 dir = player.transform.position - this.transform.position;
-            player.AddForce(dir.normalized * _pushbackPower, ForceMode2D.Impulse);
-        }
-
         // やられたエフェクトを出す
         var go = Instantiate(_killedEffect);
         go.transform.position = this.transform.position;
