@@ -9,6 +9,8 @@ TagManager:
   - Paralyze
   - Bullet
   - Bomb
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
