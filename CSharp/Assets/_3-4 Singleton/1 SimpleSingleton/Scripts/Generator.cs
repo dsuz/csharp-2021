@@ -1,11 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 敵を生成するコンポーネント
+/// </summary>
 public class Generator : MonoBehaviour
 {
+    /// <summary>生成する敵のプレハブ</summary>
     [SerializeField] GameObject _enemyPrefab = default;
+    /// <summary>敵を生成する間隔（秒）</summary>
     [SerializeField] float _interval = 5f;
+    /// <summary>敵を生成する場所</summary>
     [SerializeField] Transform[] _spawnPoints = default;
 
     void Start()

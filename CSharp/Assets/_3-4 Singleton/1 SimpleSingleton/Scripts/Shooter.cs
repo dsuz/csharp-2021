@@ -1,12 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// プレイヤーを制御するコンポーネント
+/// Fire1 で弾を発射する
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class Shooter : MonoBehaviour
 {
+    /// <summary>移動する力</summary>
     [SerializeField] float _movePower = 5f;
+    /// <summary>弾を発射地点</summary>
     [SerializeField] Transform _muzzle = default;
+    /// <summary>弾のプレハブ</summary>
     [SerializeField] GameObject _bulletPrefab = default;
     Rigidbody2D _rb = default;
     Vector2 _dir = default;
@@ -43,6 +48,7 @@ public class Shooter : MonoBehaviour
     {
         var bullets = GameObject.FindGameObjectsWithTag("Bullet");
 
+        // 画面内の弾数を制限する
         if (bullets.Length < SingletonSystem.Instance.BulletsInScene)
         {
             Instantiate(_bulletPrefab, _muzzle.position, _muzzle.rotation);
