@@ -9,5 +9,5 @@ public partial class Main : MonoBehaviour
         Debug.Log("Main クラスの Start() が実行されました");
     }
 
-    partial void PartialMethod();
+    partial void PartialMethod();   // パーシャル メソッドの宣言
 }
