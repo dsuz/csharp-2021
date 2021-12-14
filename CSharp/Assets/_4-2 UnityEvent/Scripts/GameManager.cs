@@ -53,8 +53,6 @@ public class GameManager : MonoBehaviour
         _onGameStart.Invoke();
         _life = _initialLife;
         _enemies = GameObject.FindObjectsOfType<GunEnemyController>().ToList();
-        _lifeObject = GameObject.Find("LifeText");
-        _lifeText = _lifeObject.GetComponent<Text>();
         _lifeText.text = string.Format("{0:000}", _life);
 
         if (_hideSystemMouseCursor)
