@@ -49,23 +49,29 @@ public class GameManager : MonoBehaviour
     /// <summary>次にライフが増える得点</summary>
     int _nextLifeUpScore = 0;
 
+    void Start()
+    {
+        if (_hideSystemMouseCursor)
+        {
+            Cursor.visible = false;
+        }
+
+        _enemies = GameObject.FindObjectsOfType<GunEnemyController>().ToList();
+        _enemies.ForEach(e => e.gameObject.SetActive(false));
+    }
+
     /// <summary>
     /// ゲームを初期化する
     /// </summary>
-    void Start()
+    public void GameStart()
     {
         _onGameStart.Invoke();
         _score = 0;
         AddScore(0);    // 表示を更新する
         _nextLifeUpScore = _lifeUpScoreRange;
         _life = _initialLife;
-        _enemies = GameObject.FindObjectsOfType<GunEnemyController>().ToList();
         _lifeText.text = string.Format("{0:000}", _life);
-
-        if (_hideSystemMouseCursor)
-        {
-            Cursor.visible = false;
-        }
+        _enemies.ForEach(e => e.gameObject.SetActive(true));
     }
 
     /// <summary>
@@ -95,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Restart");
         _enemies.ForEach(enemy => enemy.gameObject.SetActive(true));
-        Start();
+        GameStart();
     }
 
     /// <summary>
