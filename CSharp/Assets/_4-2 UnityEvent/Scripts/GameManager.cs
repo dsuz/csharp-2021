@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _onGameStart.Invoke();
+        _score = 0;
+        AddScore(0);    // 表示を更新する
         _life = _initialLife;
         _enemies = GameObject.FindObjectsOfType<GunEnemyController>().ToList();
         _lifeText.text = string.Format("{0:000}", _life);
@@ -59,6 +61,17 @@ public class GameManager : MonoBehaviour
         {
             Cursor.visible = false;
         }
+    }
+
+    /// <summary>
+    /// スコアを加算し、表示を更新する
+    /// </summary>
+    /// <param name="score">加算するスコア</param>
+    void AddScore(int score)
+    {
+        _score += score;
+        Debug.Log($"Score: {_score}");
+        _scoreText.text = string.Format("{0:0000000000}", _score);
     }
 
     /// <summary>
@@ -106,7 +119,8 @@ public class GameManager : MonoBehaviour
             // 敵に当たったら得点を足して表示を更新する
             if (_currentTargetEnemy)
             {
-                _currentTargetEnemy.Hit();
+                int score = _currentTargetEnemy.Hit();
+                AddScore(score);
             }
         }
     }

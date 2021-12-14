@@ -31,10 +31,6 @@ public class GunEnemyController : MonoBehaviour
     Collider _collider = null;  // Collider は BoxCollider, SphereCollider などの基底クラスである
     /// <summary>敵が銃を撃った時に実行される処理</summary>
     [SerializeField] UnityEngine.Events.UnityEvent _onShoot = null;
-    /// <summary>ゲームの総得点</summary>
-    int _totalScore = 0;
-    /// <summary>スコアを表示するための Text(UI)</summary>
-    [SerializeField] Text _scoreText = null;
 
     /// <summary>
     /// 初期化処理
@@ -46,7 +42,6 @@ public class GunEnemyController : MonoBehaviour
         _collider.enabled = false;
         _status = GunEnemyStatus.Idle;
         ResetTimer();
-        _scoreText.text = string.Format("{0:0000000000}", _totalScore);
     }
 
     void Update()
@@ -101,16 +96,13 @@ public class GunEnemyController : MonoBehaviour
     /// プレイヤーの攻撃が当たった時に呼ぶ
     /// Idle 状態（初期状態）に戻す
     /// </summary>
-    /// <returns></returns>
+    /// <returns>攻撃が当たったことによって加算される得点</returns>
     public int Hit()
     {
         ResetTimer();
         _status = GunEnemyStatus.Idle;
         _animator.SetTrigger("Hit");
         _collider.enabled = false;
-        _totalScore += _score;
-        Debug.Log($"{name} got hit. Score: {_totalScore}");
-        _scoreText.text = string.Format("{0:0000000000}", _totalScore);
         return _score;
     }
 }
