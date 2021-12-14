@@ -28,12 +28,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] int _initialLife = 500;
     /// <summary>ライフを表示するための Text (UI)</summary>
     [SerializeField] Text _lifeText = null;
+    /// <summary>ライフが増える得点（ここで設定された点ごとに増える）</summary>
+    [SerializeField] int _lifeUpScoreRange = 1000;
     /// <summary>弾を撃った時に呼び出す処理</summary>
     [SerializeField] UnityEngine.Events.UnityEvent _onShoot = null;
     /// <summary>ゲームスタート時に呼び出す処理</summary>
     [SerializeField] UnityEngine.Events.UnityEvent _onGameStart = null;
     /// <summary>ゲームオーバー時に呼び出す処理</summary>
     [SerializeField] UnityEngine.Events.UnityEvent _onGameOver = null;
+    /// <summary>ライフが増えた時に呼び出す処理</summary>
+    [SerializeField] UnityEngine.Events.UnityEvent _onLifeUp = null;
     /// <summary>ライフの現在値</summary>
     int _life;
     /// <summary>ゲームのスコア</summary>
@@ -42,8 +46,8 @@ public class GameManager : MonoBehaviour
     List<GunEnemyController> _enemies = null;
     /// <summary>現在照準で狙われている敵</summary>
     GunEnemyController _currentTargetEnemy = null;
-    /// <summary>ライフを表示するための GameObject</summary>
-    GameObject _lifeObject;
+    /// <summary>次にライフが増える得点</summary>
+    int _nextLifeUpScore = 0;
 
     /// <summary>
     /// ゲームを初期化する
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
         _onGameStart.Invoke();
         _score = 0;
         AddScore(0);    // 表示を更新する
+        _nextLifeUpScore = _lifeUpScoreRange;
         _life = _initialLife;
         _enemies = GameObject.FindObjectsOfType<GunEnemyController>().ToList();
         _lifeText.text = string.Format("{0:000}", _life);
@@ -72,6 +77,15 @@ public class GameManager : MonoBehaviour
         _score += score;
         Debug.Log($"Score: {_score}");
         _scoreText.text = string.Format("{0:0000000000}", _score);
+
+        // ライフアップ判定
+        if (_score >= _nextLifeUpScore)
+        {
+            Debug.Log($"Lifeup. Life:{_life}");
+            _nextLifeUpScore += _lifeUpScoreRange;
+            _lifeText.text = string.Format("{0:000}", _life);
+            _onLifeUp.Invoke();
+        }
     }
 
     /// <summary>
