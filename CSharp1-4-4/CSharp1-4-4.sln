@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp1-4-4", "CSharp1-4-4\CSharp1-4-4.csproj", "{EC28620C-EA76-4910-95D1-89149409881B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContidionalBreakPoint", "ContidionalBreakPoint\ContidionalBreakPoint.csproj", "{C0E95B2D-CBCB-4B54-BF5E-B32E6B21799C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC28620C-EA76-4910-95D1-89149409881B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC28620C-EA76-4910-95D1-89149409881B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC28620C-EA76-4910-95D1-89149409881B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC28620C-EA76-4910-95D1-89149409881B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0E95B2D-CBCB-4B54-BF5E-B32E6B21799C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0E95B2D-CBCB-4B54-BF5E-B32E6B21799C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0E95B2D-CBCB-4B54-BF5E-B32E6B21799C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0E95B2D-CBCB-4B54-BF5E-B32E6B21799C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FF7C084-3BAA-4EEF-92E8-498D703ED152}
+	EndGlobalSection
+EndGlobal
